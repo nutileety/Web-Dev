@@ -1,0 +1,67 @@
+* {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+}
+
+body{
+    background-color: #0e0e0e;
+}
+
+.topLink{
+    color:rgb(182, 182, 182);
+    padding-left: 20px;
+    cursor: pointer;
+}
+
+.banner{
+    color: lightgrey;
+}
+
+.DownloadForWinButton {
+    color: white;
+    background-color:#0078d4;
+    border-radius: 6px;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 12px 24px;
+}
+.editions-link {
+    padding-right: 3px;
+}
+
+p{
+    color:gray;
+    font-size:12px;
+}
+a{
+    color:#4daafc
+}
+
+.download{
+    color: white;
+    background-color:#0078d4;
+    border-radius: 4px;
+    font-size: px;
+    padding: 5px 15px;
+}
+
+.search-bar {
+    background: #0e0e0e;
+    border: 1px solid;
+    padding: 5px 12px 5px 36px;
+    height: unset;
+    border-radius: 5px;
+    color: gray;
+    background-image: url('https://code.visualstudio.com/assets/icons/search-dark.svg');
+    background-repeat: no-repeat;
+    background-position: 5px 7px ; 
+}
+
+h5{
+    color: #9ba3b4cd; 
+    background: #1a1a1a; 
+    font-size:13px; 
+    font-weight: small;
+    padding: 8px 22px;
+    border-radius: 32px;
+    width: max-content; 
+}
