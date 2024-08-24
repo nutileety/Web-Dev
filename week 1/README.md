@@ -1,1 +1,1 @@
-<h3> Landing page of VS code</h3>
+<h3> Web dev Assignments </h3>
