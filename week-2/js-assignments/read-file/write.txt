@@ -1,0 +1,1 @@
+Hi, I am writtenn into the file write.txt
