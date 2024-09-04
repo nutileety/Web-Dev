@@ -9,3 +9,4 @@ setTimeoutPromisified(3000).then(call);
 
 // output :
 // (after 3 seconds) This not a call back syntax
+
