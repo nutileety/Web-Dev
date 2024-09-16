@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body id="parent-node">
+    <h3>Todo 1</h3>
+    <h3>Todo 2</h3>
+    <h3>Todo 3</h3>
+    <button onclick="randomDelete()">random delete</button>
+</body>
+<script>
+    function randomDelete() {
+        const element = document.querySelector("h3");
+        const parent = element.parentNode;
+        parent.removeChild(element);
+        //alt: document.getElementById("parent-node").removeChild(element);
+            // document.querySelector("#parent-node").removeChild(element);
+    }
+</script>
+</html>
