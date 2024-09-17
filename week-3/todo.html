@@ -3,30 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Todo</title>
+    <title>Document</title>
 </head>
 <body>
-    <h4>1.To wake up.</h4>
-    <h4>2.To finish morning routine</h4>
-    <h4></h4>
-    <div>
-        <input type="text" id="todo">
-        <button onclick="addTodo()">add todo</button>
+    <div id="parent">
+
     </div>
-    <script>
-        function addTodo() {
-        const inputE1 = document.querySelector("#todo");
-        var value1 = inputE1.value;
-        console.log(value1);
-        }
-        
-        let count = 0;
-        function setTimer() {
-            if(count <60)
-                document.querySelectorAll("h4")[2].innerHTML="Seconds: "+count;
-            count += 1;
-        }
-        setInterval(setTimer, 1000);
-    </script>
+    <input type="text" id="add-todo">
+    <button onclick="addTodo()">add todo</button>
 </body>
+<script>
+    function addTodo() {
+       const element = document.querySelector("#add-todo");
+       const valueEl = element.value;
+
+       const createEl = document.createElement("div")
+       createEl.innerHTML = valueEl;
+
+       document.querySelector("body").appendChild(createEl);
+    }
+</script>
 </html>
