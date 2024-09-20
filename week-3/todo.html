@@ -3,24 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Todo adding</title>
 </head>
 <body>
     <div id="parent">
 
     </div>
-    <input type="text" id="add-todo">
-    <button onclick="addTodo()">add todo</button>
+    <input type="text" id="add-todo" required="required">
+    <button type="submit" onclick="addTodo()" > add todo </button>
 </body>
 <script>
+    //todo adding function
+    let indexVal = 1;
     function addTodo() {
        const element = document.querySelector("#add-todo");
        const valueEl = element.value;
+       
+       if(valueEl === "")
+            alert("Enter some text inside text box as todo..!");
+        else {
+            const createEl = document.createElement("div")
+            createEl.setAttribute("id","todo-"+indexVal);
+            createEl.innerHTML = valueEl+"<button onclick='deleteTodo("+indexVal+")'>Delete</button>";
+            document.querySelector("#parent").appendChild(createEl);
 
-       const createEl = document.createElement("div")
-       createEl.innerHTML = valueEl;
+            indexVal++;
+        }
 
-       document.querySelector("body").appendChild(createEl);
+    }
+
+    //The todo deleting function
+    function deleteTodo(indexVal) {
+        const divElement = document.getElementById("todo-"+indexVal);
+        divElement.parentNode.removeChild(divElement);
     }
 </script>
 </html>
