@@ -19,12 +19,14 @@
        const element = document.querySelector("#add-todo");
        const valueEl = element.value;
        
-       if(valueEl === "")
+       if(valueEl === "") {
             alert("Enter some text inside text box as todo..!");
+            return;
+       }
         else {
             const createEl = document.createElement("div")
             createEl.setAttribute("id","todo-"+indexVal);
-            createEl.innerHTML = valueEl+"<button onclick='deleteTodo("+indexVal+")'>Delete</button>";
+            createEl.innerHTML = valueEl+"<button onclick='deleteTodo("+ indexVal +")'>Delete</button>";
             document.querySelector("#parent").appendChild(createEl);
 
             indexVal++;
