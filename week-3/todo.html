@@ -23,14 +23,12 @@
             alert("Enter some text inside text box as todo..!");
             return;
        }
-        else {
-            const createEl = document.createElement("div")
-            createEl.setAttribute("id","todo-"+indexVal);
-            createEl.innerHTML = valueEl+"<button onclick='deleteTodo("+ indexVal +")'>Delete</button>";
-            document.querySelector("#parent").appendChild(createEl);
-
-            indexVal++;
-        }
+        const createEl = document.createElement("div")
+        createEl.setAttribute("id","todo-"+indexVal);
+        createEl.innerHTML = valueEl+"<button onclick='deleteTodo("+ indexVal +")'>Delete</button>";
+        document.querySelector("#parent").appendChild(createEl);
+        indexVal++;
+        element.value="";
 
     }
 
@@ -39,5 +37,55 @@
         const divElement = document.getElementById("todo-"+indexVal);
         divElement.parentNode.removeChild(divElement);
     }
+    
 </script>
+</html>
+
+<!-- Alternative  -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script>
+    function todo() {
+        let index_val=1;
+        const divEl = document.createElement("div");
+        divEl.setAttribute("id","todo-"+index_val);
+
+
+        const element = document.getElementById("add-todo");
+        const spanEl = document.createElement("span");
+        spanEl.innerHTML = element.value; 
+        if(element === "") {
+            alert("Please enter the text box");
+            return;
+        }
+
+        var buttonEl = document.createElement("button"); 
+        buttonEl.setAttribute("onclick","deleteTodo("+index_val+")");
+        buttonEl.innerHTML = "Delete";
+
+        divEl.appendChild(spanEl);
+        divEl.appendChild(buttonEl);
+
+        document.querySelector("body").appendChild(divEl);
+        index_val++;
+        element.value= "";
+
+    }
+
+    function deleteTodo(index_val) {
+        const removeEl = document.getElementById("todo-"+index_val);
+        removeEl.parentNode.removeChild(removeEl);
+    }
+</script>
+<body>
+    <input type="text" id="add-todo">
+    <button onclick="todo()">add todo</button>
+    
+</body>
 </html>
