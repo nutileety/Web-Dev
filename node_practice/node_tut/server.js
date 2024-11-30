@@ -1,19 +1,20 @@
+const express = require('express');
+const app = express();
+const port = 3000;
 
-function Call() {
-    console.log("done!\n");
-}
-function add(a, b, callback) {
-    const result = a+b;
-    console.log("result : " + result);
-    callback();
-}
-
-add(3, 4, function() {
-    console.log("Done successfully!\n");
+app.get('/', function(req, res) {
+    res.send("Welcome to our South Indain Hotel");
 });
 
-add(5, 5, Call);
-
-add(6, 5, () => {
-    console.log("executed successfully!\n");
+app.get('/idli', (req, res) => {
+    var menu = {
+        name:'rava idli',
+        qty: 2,
+        sambar: true,
+        chatni:false,
+    }
+    res.send(menu);
 })
+app.listen(port, () => {
+    console.log(`The server is using the port ${port}`);
+});
