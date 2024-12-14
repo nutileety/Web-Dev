@@ -7,7 +7,7 @@ var server = http.createServer((req, res) => {
     // console.log(req);
     // console.log(req.url); //prints the requested url
     // console.log(req.headers); //prints the header of the http request
-    var log = `${Date.now()}: ${req.url} request received.\n `;
+    var log = `${Date.now()}: ${req.method} ${req.url} request received.\n `;
     if(req.url === '/favicon.ico') return res.end();
 
     const myUrl = url.parse(req.url, true);
