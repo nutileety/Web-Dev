@@ -22,14 +22,18 @@ app.route('/apis/users/:id')
    return res.json(user);
 })
 .put((req, res) => {
-   console.log("Pending...");
+   return res.json({status: "Pending..."});
 })
-.patch((req,res) => {
-   console.log("Pending...");
+.patch((req, res) => {
+   return res.json({status: "Pending..."});
 })
 .delete((req, res) => {
-   console.log("Pending...");
+   return res.json({status: "Pending..."});
 });
+
+app.post('/apis/users/', (req, res) => {
+   return res.json({status: "Pending"});
+})
 
 app.listen(port, () => {
     console.log(`The server is started on port: ${port}`);
