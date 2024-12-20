@@ -4,6 +4,7 @@ const users = require('./MOCK_DATA.json');
 const app = express();
 const port = 8000;
 
+// adding the express middleware to post the data
 app.use(express.urlencoded({extended: false}));
 
 //only as APIs
@@ -36,8 +37,8 @@ app.route('/apis/users/:id')
 
 app.post('/apis/users/', (req, res) => {
    const body = req.body;
-   users.push({...body, id: users.length + 1});
-   fs.writeFile('./MOCK_DATA.json', JSON.stringify(body), (err) => {
+   users.push({id: users.length + 1, ...body});
+   fs.writeFile('./MOCK_DATA.json', JSON.stringify(users), (err) => {
       if(err) {
          return res.send(err);
       }
