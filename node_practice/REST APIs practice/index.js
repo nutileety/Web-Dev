@@ -25,11 +25,16 @@ app.route('/apis/users/:id')
    const user = users.find((user) => user.id === id); 
    return res.json(user);
 })
-.put((req, res) => {
-   return res.json({status: "Pending..."});
-})
 .patch((req, res) => {
-   return res.json({status: "Pending..."});
+   const id = Number(req.params.id);
+   const user = users.find((user) => user.id === id);
+   const index = users.indexOf(user); 
+   Object.assign(user, req.body);
+   users[index] = user;
+   fs.writeFile('MOCK_DATA.json', JSON.stringify(users), (err) => {
+      console.log("Error: " + err);
+   });
+   return res.json({status: "Updated."});
 })
 .delete((req, res) => {
    return res.json({status: "Pending..."});
