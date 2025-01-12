@@ -6,6 +6,7 @@ const express = require('express');
 const app = express();
 const port = 3000;
 
+// GET /files - Returns a list of files present in `./files/` directory
 app.get('/files',(req, res) => {
     fs.readdir(dirPath, (err, files) => {
         if(err) {
@@ -21,6 +22,7 @@ app.get('/files',(req, res) => {
     });
 }); 
 
+// GET /file/:filename - Returns content of given file by name
 app.get('/files/:fileName', (req, res) => {
     const fileName = req.params.fileName;
     const filedir = path.join(dirPath, fileName);
