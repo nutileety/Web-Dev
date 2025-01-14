@@ -4,6 +4,7 @@ const app = express();
 
 const port = 3000
 const todos = require('./todos_list.json');
+const { parse } = require('path');
 
 app.use(express.json());
 
@@ -55,6 +56,19 @@ app.route('/todo/:id')
             return res.status(200).json({status: "modified successfully", id:id});
         }
    });
+})
+.delete((req,res) => {
+    const id = Number(req.params.id);
+    const todoIndex = todos.findIndex((todo) => todo.id === id);
+    todos.splice(todoIndex, 1);
+    fs.writeFile('todos_list.json', JSON.stringify(todos), (err) => {
+        if(err) {
+            return res.status(404).send("Unable to delete..!");
+        }
+        else {
+            return res.status(200).send({status:"deleted successfully", id: id});
+        }
+    });
 });
 
 
