@@ -23,13 +23,14 @@ app.route('/todo')
 })
 .post((req, res) => {
     const body = req.body;
-    todos.push({id: todos.length+1, ...body});
+    const newId = todos.length > 0 ? Math.max(...todos.map(todo => todo.id)) + 1 : 1;
+    todos.push({id: newId, ...body});
     fs.writeFile('todos_list.json', JSON.stringify(todos), (err, data) => {
         if(err) {
             res.status(404).send("Unable insert todos..!");
         }
         else {
-            res.send({status: "Success", id: todos.length});
+            res.send({status: "Success", id: newId});
         }
     });
 });
