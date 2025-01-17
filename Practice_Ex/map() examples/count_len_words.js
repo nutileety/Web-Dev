@@ -5,4 +5,4 @@ var count = words.map((word) => {
     return `${word}: ${word.length} `;
 });
 
-console.log(`The count of each word are:\n ${count.join('\n')}`);
+console.log(`The count of each word are:\n ${count.join('\n ')}`);
