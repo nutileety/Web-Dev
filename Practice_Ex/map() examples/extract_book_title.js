@@ -1,3 +1,5 @@
+// You have an array of objects where each object represents a book with 
+// properties like title and author. Use map to extract only the titles of all the books.
 const books = [{
     title:  "C++ fundamentls",
     author: "Balaguruswamy"
