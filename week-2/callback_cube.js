@@ -1,28 +1,19 @@
-function square(n) {
-    return n*n;
-}
-
-function cube(n) {
-    return n**3;
-}
-
-function sumOfSquares(a, b) {
-    const val1 = square(a);
-    const val2 = square(b);
+//implement the callback function as an argument
+function sumOfSomething(a, b, callback) {
+    const val1 = callback(a);
+    const val2 = callback(b);
     return val1 + val2; 
 }
 
-function sumOfCubes(a, b) {
-    const val1 = cube(a);
-    const val2 = cube(b);
-    return val1 + val2;
-}
+// callback function for the sum of squares
+const sumOfSquares = sumOfSomething(1, 2, (n) => {
+    return n*n;
+}); 
 
-function sumOfSquaresAndCubes(a, b) {
-    const squares = sumOfSquares(a, b);
-    const cubes = sumOfCubes(a, b);
-    console.log(`sum of squares is: ${squares}`);
-    console.log(`sum fo cubes is: ${cubes}`);
-}
+// callback function for the sum of cubes
+const sumOfCubes = sumOfSomething(2, 2, (n) => {
+    return n**3;
+});
 
-sumOfSquaresAndCubes(1, 2);
+console.log(`sum is squares: ${sumOfSquares}`);
+console.log(`sum is cubes: ${sumOfCubes}`);
