@@ -1,9 +1,9 @@
 function myFunction() {
     return new Promise((resolve) => {
-        resolve("Hi, There");
+        setTimeout(resolve, 2000);
     });
 }
 
-myFunction().then((data) => {
-    console.log(data);
+myFunction().then(() => {
+    console.log("Hi, There");
 });
