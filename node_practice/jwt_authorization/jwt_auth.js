@@ -46,6 +46,30 @@ app.post('/signIn', (req, res) => {
     return res.json({token,});
 });
 
+app.get('/users', (req, res) => {
+    const tokens = req.headers.authorization;
+    try {
+        const decode = jwt.verify(tokens, jwtpassword);
+        const username = decode.username;
+        return res.json({
+            other_users: ALL_USERS.filter((value) => {
+                if(value.username == username) {
+                    return false;
+                }
+                else {
+                    return true;
+                }
+            })
+        });
+    }
+    catch(err) {
+        return res.status(403).json({
+            msg:"The invalid Token..!",
+            error: err   
+        });
+    }
+});
+
 app.listen(3000, () => {
     console.log("The server is started...!");
 });
