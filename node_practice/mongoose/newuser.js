@@ -6,12 +6,12 @@ const app = express();
 
 app.use(express.json());
 
-mongoose.connect('mongodb://localhost:27017/');
+mongoose.connect('mongodb://localhost:27017/user_signup');
 
-const NewUser = mongoose.model('usernew', {
+const NewUser = mongoose.model('newuser', {
     name: String, 
     username: String,
-    name: String
+    password: String
 }); 
 
 
@@ -27,7 +27,7 @@ app.post('/signup', async (req, res) => {
         password: password
         });
         newUser.save();
-        return res.status(200).json('Successfully signed up.');
+        return res.status(200).json({msg: 'Successfully signed up.'});
     }
     else {
         return res.status(403).json({msg: "user already exists!"});
