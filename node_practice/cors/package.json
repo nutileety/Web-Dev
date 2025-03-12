@@ -1,7 +1,7 @@
 {
-  "name": "node_practice_with_chalk",
+  "name": "cors",
   "version": "1.0.0",
-  "main": "path_lib.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -10,9 +10,7 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "chalk": "^5.3.0",
-    "express": "^4.21.2",
-    "jsonwebtoken": "^9.0.2",
-    "mongoose": "^8.10.0"
+    "cors": "^2.8.5",
+    "express": "^4.21.2"
   }
 }

@@ -40,7 +40,7 @@ app.post('/signIn', (req, res) => {
     const username = req.body.username;
     const password = req.body.password;
     if(!userExists(username, password)) {
-        return res.status(403).json("The user not exits in the database!");
+        return res.status(403).json("The user not exists in the database!");
     }
     var token = jwt.sign({username:username}, jwtpassword);
     return res.json({token,});
