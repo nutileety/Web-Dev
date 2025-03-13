@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.6/axios.min.js"></script>
+<script>
+    async function fetchUser(){
+        const response = await axios.post("http://localhost:3000/verify", {
+            username: document.getElementById("username").value,
+            password: document.getElementById("password").value
+        });
+        console.log(response.data);
+    }
+</script>
+<body>
+    <input type="text" id="username" placeholder="Enter username">
+    <input type="text" id="password" placeholder="Enter password">
+    <button onclick="fetchUser()">Login</button>
+</body>
+</html>
