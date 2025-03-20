@@ -1,7 +1,7 @@
 const express = require('express');
 const jwt = require('jsonwebtoken');
-const JWT_SECRET = "123456abc";
 const app = express();
+const SECRET = "123thetokenisencoding";
 
 app.use(express.json());
 
@@ -12,58 +12,40 @@ app.post('/signup', (req, res) => {
     const password = req.body.password;
 
     users.push({
-        username,
-        password
+        username: username,
+        password: password
     });
-    return res.send('User signed up successfully.');
+
+    res.json({
+        msg: "Signed up successfully"
+    });
 });
 
 app.post('/signin', (req, res) => {
     const username = req.body.username;
     const password = req.body.password;
 
-    const user = users.find((user) => user.username === username && user.password === password)
+    let foundUser = null;
+    
+    for(let i=0; i<users.length; i++){
+        if(users[i].username === username && users[i].password === password) {
+            foundUser = users[i];
+        }
+        else{
+            return res.send("The Invalid user credentials");
+        }
+    }
 
-    if(user) {
-        const token = jwt.sign({username: username}, JWT_SECRET);
-        console.log(token);
+    if(foundUser) {
+        const token = jwt.sign({username: foundUser.username}, SECRET);
         return res.json({token});
     }
     else {
-        return res.status(403).send('Username and Password is invalid');
-    }
-});
-
-app.get('/me', (req, res) => {
-    const token = req.headers.authorization;
-    try {
-        const decodeInfo = jwt.verify(token, JWT_SECRET);
-        const username = decodeInfo.username;
-        console.log(username)
-
-        let findUser = null;
-        for(let i=0; i<users.length; i++) {
-            if(users[i].username === username) {
-                findUser = users[i];
-            }
-        }
-        // or const user = users.find((user) => user.username === username);
-        
-        if(findUser) {
-            return res.status(200).json({
-                username: findUser.username
-            });
-        }
-        else {
-            return res.status(403).send("The user is unauthorized");
-        }
-    }
-    catch(err) {
-        return res.status(403).send(err);
-    }
+        return res.send("Unable to generate token");
+    }  
 });
 
 app.listen(3000, () => {
-    console.log("The server is started on port 3000");
-});
+    console.log("The server is started...");
+})
 
