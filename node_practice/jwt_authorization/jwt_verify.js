@@ -45,6 +45,33 @@ app.post('/signin', (req, res) => {
     }  
 });
 
+function auth(req, res, next) {
+    const token = req.headers.token;
+    const decodeUser = jwt.verify(token, SECRET);
+
+
+    if(decodeUser.username){
+        req.username = decodeUser.username;
+        next()
+    }
+    else{
+        return res.send("Invalid token credentials");
+    }
+}
+    
+
+app.get('/me',auth, (req, res) => {
+    let foundUser = null
+    for(let i=0; i<users.length; i++){
+        if(users[i].username === req.username) {
+            foundUser = users[i]
+        }
+    }
+    return res.json({
+        username: foundUser.username,
+    });
+})
+
 app.listen(3000, () => {
     console.log("The server is started...");
 })
