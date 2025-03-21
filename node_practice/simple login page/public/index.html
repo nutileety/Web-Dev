@@ -17,6 +17,18 @@
         });
         alert("signed up successfully");
     }
+
+    async function signIn() {
+        const username = document.getElementById("signin-username").value;
+        const password = document.getElementById("signin-password").value;
+
+        const response = await axios.post("http://localhost:3000/signin", {
+            username: username,
+            password: password
+        });
+
+        localStorage.setItem("token", response.data.token);    
+    }
 </script>
 <body>
     <div>
