@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+    async function signUp() {
+        const username = document.getElementById("signup-username").value;
+        const password = document.getElementById("signup-password").value;
+
+        await axios.post("http://localhost:3000/signup", {
+            username: username,
+            password: password
+        });
+        alert("signed up successfully");
+    }
+</script>
+<body>
+    <div>
+        <h3>Sign Up</h3>
+        <div>
+            <label>username: </label>
+            <input type="text" id="signup-username" placeholder="enter the username">
+            <label>password: </label>
+            <input type="password" id="signup-password" placeholder="enter the password">
+            <button onclick="signUp()">Submit</button>
+        </div>  
+    </div>
+    <div>
+        <h3>Sign In</h3>
+        <div>
+            <label>username: </label>
+            <input type="text" id="signin-username" placeholder="enter the username">
+            <label>password: </label>
+            <input type="password" id="signin-password" placeholder="enter the password">
+            <button onclick="signIn()">Submit</button>
+        </div>  
+    </div>
+    <div id="user-info"></div>
+    <div>
+        <button onclick="logout()">Logout</button>
+    </div>
+</body>
+</html>
