@@ -1,3 +1,4 @@
+const bcrypt = require('bcrypt');
 const express = require('express');
 const {userModel, todoModel} = require('./db');
 const mongoose = require('mongoose');
@@ -13,10 +14,12 @@ app.post('/signup', async function(req, res) {
     const email = req.body.email;
     const password = req.body.password;
     const name = req.body.name;
+    
+    const hashedPassword = await bcrypt.hash(password, 5);
 
     await userModel.create({
         email: email,
-        password: password,
+        password: hashedPassword,
         name: name
     });
     res.json({ 
@@ -30,19 +33,26 @@ app.post('/signin', async function(req, res) {
 
     const user = await userModel.findOne({
         email: email,
-        password: password
     });
 
-    if(user) {
+    if(!user) {
+        return res.status(403).json({
+            msg: "User not found in database"
+        })
+    }
+
+    const passwordMatch = await bcrypt.compare(password, user.password);
+
+    if(passwordMatch) {
         const token = jwt.sign({
             id: user._id.toString()
         }, JWT_SECRET);
-        res.status(200).json({
+        return res.status(200).json({
             token: token
         })
     }
     else {
-        res.status(403).json({
+        return res.status(403).json({
             msg: 'Invalid Creadentials!'
         })
     }
