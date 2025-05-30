@@ -17,7 +17,13 @@ app.post('/signup', async function(req, res) {
     const requiredBody = z.object({
         email: z.string().min(3).max(100).email(),
         name: z.string().min(3).max(100),
-        password: z.string().min(8).max(20)
+        password: z.string()
+            .min(8)
+            .max(20)
+            .regex(/[A-Z]/, { message: 'Password must contain at least one uppercase letter' })
+            .regex(/[a-z]/, { message: 'Password must contain at least one lowercase letter' })
+            .regex(/\d/, { message: 'Password must contain at least one digit' })
+            .regex(/[^A-Za-z0-9]/, { message: 'Password must contain at least one special character' })
     });
 
     const parseBody = requiredBody.safeParse(req.body);
