@@ -1,4 +1,5 @@
 const { Router } = require('express');
+const { adminModel } = require('../db');
 const adminRoute = Router();
 
 adminRoute.post('/signup', function(req, res) {
