@@ -12,7 +12,6 @@ courseRoute.post('/purchase', function(req, res) {
         msg: "The course purhases endpoints"
     });
 })
-
 module.exports = ({
     courseRoute: courseRoute
 })
