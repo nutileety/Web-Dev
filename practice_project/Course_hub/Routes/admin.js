@@ -1,8 +1,9 @@
 const { Router } = require('express');
 const { z } = require('zod');
 const bcrypt = require('bcrypt');
-const { adminModel } = require('../db');
+const { adminModel, courseModel } = require('../db');
 const { JWT_ADMIN_SECRET } = require('../config');
+const { adminMiddleware } = require('../middlewares/admin')
 const adminRoute = Router();
 
 adminRoute.post('/signup', async function(req, res) {
@@ -70,9 +71,15 @@ adminRoute.post('/signin', async function(req, res) {
     }
 })
 
-adminRoute.post('/course', function(req, res) {
+adminRoute.post('/course', async function(req, res) {
+    const adminId = req.adminId;
+
+    const course = await courseModel.create({
+        title, discription, price, imageUrl, creatorId: adminId
+    })
     res.json({
-        msg: 'create course endpoint'
+        msg: 'course created successfully',
+        courseId: course._id
     });
 })
 
