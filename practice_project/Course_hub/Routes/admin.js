@@ -1,4 +1,5 @@
 const { Router } = require('express');
+const jwt = require('jsonwebtoken');
 const { z } = require('zod');
 const bcrypt = require('bcrypt');
 const { adminModel, courseModel } = require('../db');
@@ -55,27 +56,32 @@ adminRoute.post('/signin', async function(req, res) {
         });
     }
 
-    const adminMatch =await bcrypt.compare(password, findAdmin.password);
+    const adminMatch = await bcrypt.compare(password, findAdmin.password);
     if(adminMatch) {
         const token = jwt.sign({
             adminId: findAdmin._id.toString()
         }, JWT_ADMIN_SECRET);
         res.json({
-            msg: "Admin signin successfully"
+            msg: "Admin signin successfully",
+            token: token
         });
     } else {
         res.json({
             msg: "Invalid admin credentials",
-            token: token
         })
     }
 })
 
-adminRoute.post('/course', async function(req, res) {
+adminRoute.post('/course', adminMiddleware, async function(req, res) {
+    const { title, discription, price, imageURL } = req.body;
     const adminId = req.adminId;
 
     const course = await courseModel.create({
-        title, discription, price, imageUrl, creatorId: adminId
+        title: title,
+        discription: discription, 
+        price: price, 
+        imageUrl: imageURL, 
+        creatorId: adminId
     })
     res.json({
         msg: 'course created successfully',
@@ -83,15 +89,40 @@ adminRoute.post('/course', async function(req, res) {
     });
 })
 
-adminRoute.put('/course', function(req, res) {
-    res.json({
-        msg: "modifying course endpoint"
+adminRoute.put('/course',adminMiddleware, async function(req, res) {
+    const { title, discription, price, imageURL, courseId } = req.body;
+    const adminId = req.adminId; 
+
+    const modifyCourse = await courseModel.findOneAndUpdate({
+        _id: courseId,
+        creatorId: adminId
+    }, 
+    {
+        title: title,
+        discription: discription, 
+        price: price, 
+        imageUrl: imageURL, 
     });
+    if(modifyCourse){
+        res.json({
+            msg: "course is updated"
+        });
+    } else {
+        res.json({
+            msg: "You are not the creator of this course!"
+        })
+    }
 })
 
-adminRoute.get('/course/bulk', function(req, res) {
+adminRoute.get('/course/bulk', async function(req, res) {
+    const adminId = req.adminId;
+
+    const courses = await courseModel.find({
+        creatorId: adminId
+    })
     res.json({
-        msg: "view added courses"
+        msg: "All your courses are: ",
+        courses
     });
 })
 
