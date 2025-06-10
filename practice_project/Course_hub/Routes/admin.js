@@ -114,6 +114,25 @@ adminRoute.put('/course',adminMiddleware, async function(req, res) {
     }
 })
 
+adminRoute.delete('/course', adminMiddleware, async function(req, res) {
+    const adminId = req.adminId;
+    const courseId = req.body.courseId;
+
+    const delcourse = await courseModel.findOneAndDelete({
+        _id: courseId,
+        creatorId: adminId
+    });
+    if(delcourse) {
+        res.json({
+            msg: "The course deleted successfully"
+        })
+    } else {
+        res.json({
+            msg: "Unable to delete the course"
+        })
+    }
+})
+
 adminRoute.get('/course/bulk', async function(req, res) {
     const adminId = req.adminId;
 
