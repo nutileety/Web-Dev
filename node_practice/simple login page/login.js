@@ -30,51 +30,70 @@ app.post('/signin', (req, res) => {
     const password = req.body.password;
 
     let foundUser = null;
-    
-    for(let i=0; i<users.length; i++){
-        if(users[i].username === username && users[i].password === password) {
-            foundUser = users[i];
+    try {
+        for (let i = 0; i < users.length; i++) {
+            if (users[i].username === username && users[i].password === password) {
+                foundUser = users[i];
+                break;
+            }
         }
-        else{
-            return res.send("The Invalid user credentials");
-        }
-    }
 
-    if(foundUser) {
-        const token = jwt.sign({username: foundUser.username}, SECRET);
-        return res.json({token});
+        if (foundUser) {
+            const token = jwt.sign({ username: foundUser.username }, SECRET);
+            return res.json({ token });
+        } else {
+            return res.send("Invalid user credentials");
+        }
     }
-    else {
-        return res.send("Unable to generate token");
-    }  
+    catch(err) {
+        console.log("Invalid user credential", err);
+    }
+    
 });
 
 function auth(req, res, next) {
     const token = req.headers.token;
-    const decodeUser = jwt.verify(token, SECRET);
 
-
-    if(decodeUser.username){
-        req.username = decodeUser.username;
-        next()
+    // If no token is provided, respond with a 401 error
+    if (!token) {
+        return res.status(401).send("Token is required");
     }
-    else{
-        return res.send("Invalid token credentials");
+
+    try {
+        // Verify the token
+        const decodedUser = jwt.verify(token, SECRET);
+
+        // Attach the username to the request object so that other routes can use it
+        req.username = decodedUser.username;
+
+        // Proceed to the next middleware or route handler
+        next();
+    } catch (err) {
+        // If the token is invalid or expired, handle the error
+        return res.status(401).send("Invalid token credentials");
     }
 }
-    
+   
 
-app.get('/me',auth, (req, res) => {
-    let foundUser = null
-    for(let i=0; i<users.length; i++){
-        if(users[i].username === req.username) {
-            foundUser = users[i]
-        }
+app.get('/me', auth, (req, res) => {
+    const username = req.username;
+
+    // Look for the user by username
+    const foundUser = users.find(user => user.username === username);
+
+    if (!foundUser) {
+        console.log("User not found:", username);
+        return res.status(404).send("User not found");
     }
+
+    // If the user is found, return the user info
     return res.json({
         username: foundUser.username,
+        password: foundUser.password
     });
-})
+});
+
+
 
 app.listen(3000, () => {
     console.log("The server is started...");
