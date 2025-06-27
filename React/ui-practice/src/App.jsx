@@ -1,22 +1,38 @@
 
 function App() {
-  const imgAddress = "https://images.pexels.com/photos/1704488/pexels-photo-1704488.jpeg?cs=srgb&dl=pexels-sulimansallehi-1704488.jpg&fm=jpg"
 
   return (
     <div style={{backgroundColor:"#dfe6e9", hieght:"100vh", display:"flex"}}>
       <div>
-        <ProfileCard imgAddress={imgAddress}/>
+        <ProfileCard imgAddress={"https://images.pexels.com/photos/1704488/pexels-photo-1704488.jpeg?cs=srgb&dl=pexels-sulimansallehi-1704488.jpg&fm=jpg"}/>
       </div>
       <div style={{display:"flex", justifyContent:"center"}}>
         <div>
           <div>
-            <PostComponent imgAddress={imgAddress} />
+            <PostComponent 
+              profile={"https://images.pexels.com/photos/1704488/pexels-photo-1704488.jpeg?cs=srgb&dl=pexels-sulimansallehi-1704488.jpg&fm=jpg"}
+              name={"1000x devs"}
+              followers={5000}
+              time={12}
+              description={"The roadmap to achieve the web3 in 2025."}
+            />
           </div>
           <div>
-            <PostComponent imgAddress={imgAddress} />
+            <PostComponent 
+              profile={"https://imgs.search.brave.com/ZACv93qZO57A2RrexnAjJi9CTpejuyu2aIGeB9-2beA/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93YWxs/cGFwZXJhY2Nlc3Mu/Y29tL2Z1bGwvMTk0/OTM2My5qcGc"}
+              name={"Unknown coder"}
+              followers={4500}
+              time={10}
+              description={"Finally the Goal had Accomplished!"}
+            />
           </div>
           <div>
-            <PostComponent imgAddress={imgAddress} />
+            <PostComponent 
+              profile={"https://imgs.search.brave.com/F5OoHgfmJlOgbB00VWzyvvcxuQZk7JOPrCYV51JMmNU/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5nZXR0eWltYWdl/cy5jb20vaWQvMTI3/Mzc5NDUyL3Bob3Rv/L2tpdHR5LmpwZz9z/PTYxMng2MTImdz0w/Jms9MjAmYz13UWcw/TXdTcXJxZkkzWHdN/WGREVjhkY2RZMlNH/WVh2YndPdE12cUxX/UWpJPQ"}
+              name={"Code Assassin"}
+              followers={6000}
+              description={"The mastering the cooding is the Beautiful journey."}
+            />
           </div>
         </div>
       </div>
@@ -25,7 +41,7 @@ function App() {
   
 }
 
-function PostComponent(props) {
+function PostComponent({name, profile, followers, time, description}) {
   const style = {
     width:"250", 
     backgroundColor:"white", 
@@ -37,15 +53,15 @@ function PostComponent(props) {
   return (
     <div style={style}>
       <div style={{display:"flex"}}>
-        <img src={props.imgAddress} style={{width: 40, height:40, borderRadius:40}}/>
+        <img src={profile} style={{width: 40, height:40, borderRadius:40}}/>
         <div style={{fontSize: 14, marginLeft:10}}>
-          <b>1000x devs</b>
-          <div>24999 followers</div>
-          <div>14 mins</div>
+          <b>{name}</b>
+          <div>{followers} followers</div>
+          <div>{time} mins</div>
         </div>
       </div>
       <div style={{ fontSize: 14 }}>
-        What to know how to win big? Check out how these folks won $6000 in bounties.
+        {description}
       </div>
     </div>
   )
