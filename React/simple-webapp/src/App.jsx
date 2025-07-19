@@ -9,14 +9,20 @@ function App() {
   return (
     <>
       <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Layouts />} >
-            <Route path="/" element={<LandingPage />} />
-            <Route path="/class-11" element={<Class11 />} />
-            <Route path="/class-12" element={<Class12 />} />
-            <Route path="*" element={<NoPage />} />
-          </Route>
-        </Routes>
+        <div style={{ height: "100vh", backgroundColor: "pink"}}>
+          <Header />
+            <div style = {{ height: "90vh", alignContent: 'center', backgroundColor:"gray" }}>
+              <Routes>
+                <Route path="/" element={<LandingPage />} />
+                <Route path="/neet" element={<Layouts />} >
+                  <Route path="/neet/class-11" element={<Class11 />} />
+                  <Route path="/neet/class-12" element={<Class12 />} />
+                  <Route path="*" element={<NoPage />} />
+                </Route>
+              </Routes>
+            </div>
+          <Footer />
+        </div>
       </BrowserRouter>
     </>
   )
@@ -24,13 +30,7 @@ function App() {
 
 function Layouts() {
   return (
-    <div style={{ height: "100vh", backgroundColor: "pink"}}>
-      <Header />
-      <div style = {{ height: "90vh", alignContent: 'center', backgroundColor:"gray" }}>
-        <Outlet />
-      </div>
-      Footer | Contact
-    </div>
+    <Outlet />
   )
 }
 
@@ -39,10 +39,16 @@ function Header() {
     <>
       <Link to="/"> HOME </Link>
       |
-      <Link to="/class-11"> Class-11 </Link>
+      <Link to="/neet/class-11"> Class-11 </Link>
       |
-      <Link to="class-12"> Class-12 </Link>
+      <Link to="/neet/class-12"> Class-12 </Link>
     </>
+  )
+}
+
+function Footer() {
+  return (
+    <div>Footer | Contact</div>
   )
 }
 
