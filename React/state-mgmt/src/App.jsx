@@ -16,6 +16,7 @@ function BulbProvider({children}) {
 function App() {
   
  return (
+  // This where the context api which created is wrapped around the component and passed as the children to the BulbProvider Context
    <div>
       <BulbProvider >
         <LightBulb />
