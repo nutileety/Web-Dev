@@ -1,7 +1,8 @@
 import { useRecoilValue, useSetRecoilState } from "recoil"
 import { counterAtom, evenSelector } from './store/atoms/atomCounter'
 import { notificationAtom, messageAtom, jobsAtom, totalNotification } from './store/atoms/atomNavBar'
-import { use } from "react"
+import { todoAtomFamily } from './store/atoms/atomFamily'
+
 
 function Counter() {
   const count = useRecoilValue(counterAtom)
@@ -57,6 +58,19 @@ function Navigation() {
             <button >Me ({totalNotificationCount})</button>
         </div>
     )
+}
+
+export function Todo({id}) {
+  const todos = useRecoilValue(todoAtomFamily(id));
+
+  return (
+    <>
+      <div>
+        <h5>Title: {todos.title}</h5>
+        <h5>Description: {todos.description}</h5>
+      </div>
+    </>
+  )
 }
 
 export {
