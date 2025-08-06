@@ -67,7 +67,7 @@ export function Todo({id}) {
     <>
       <div>
         <h5>Title: {todos.title}</h5>
-        <h5>Description: {todos.description}</h5>
+        <h5>Completed: {String(todos.completed)}</h5>
       </div>
     </>
   )
