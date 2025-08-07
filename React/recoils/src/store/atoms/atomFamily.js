@@ -7,8 +7,9 @@ export const todoAtomFamily = atomFamily({
      default: selectorFamily({
       key: "todoSelectorfamily",
       get: (id) => async ({get})=> {
-          const res = await axios.get("https://json-placeholder.mock.beeceptor.com/todos")
-          return res.data.find(x => x.id === id)
+          await new Promise(r => setTimeout(r, 5000)); 
+          const res = await axios.get(`https://json-placeholder.mock.beeceptor.com/todos/${id}`)
+          return res.data//.find(x => x.id === id)
         }
      })
        //id => {

@@ -1,4 +1,4 @@
-import { useRecoilValue, useSetRecoilState } from "recoil"
+import { useRecoilValue, useRecoilValueLoadable, useSetRecoilState } from "recoil"
 import { counterAtom, evenSelector } from './store/atoms/atomCounter'
 import { notificationAtom, messageAtom, jobsAtom, totalNotification } from './store/atoms/atomNavBar'
 import { todoAtomFamily } from './store/atoms/atomFamily'
@@ -61,16 +61,34 @@ function Navigation() {
 }
 
 export function Todo({id}) {
-  const todos = useRecoilValue(todoAtomFamily(id));
+  const todos = useRecoilValueLoadable(todoAtomFamily(id));
 
-  return (
+  console.log(todos.state)
+  if (todos.state === 'loading'){
+    return (
+      <div>
+        Loading....
+      </div>
+    )
+  }
+  else if(todos.state === 'hasValue') {
+    return (
     <>
       <div>
-        <h5>Title: {todos.title}</h5>
-        <h5>Completed: {String(todos.completed)}</h5>
+        <h5>id: {todos.contents.id} Title: {todos.contents.title}</h5>
+        <h5>Completed: {String(todos.contents.completed)}</h5>
+        <br />
       </div>
     </>
-  )
+    )
+  }
+  else if(todos.state === 'hasError') {
+    return (
+      <div>
+        Error is fetchiing backend....
+      </div>
+    )
+  }
 }
 
 export {

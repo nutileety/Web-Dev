@@ -23,6 +23,7 @@ function App() {
         <h2>Accessing Todo</h2>
         <Todo id={1}/>
         <Todo id={2}/>
+        <Todo id={2}/>
       </RecoilRoot>
     </> 
   )
