@@ -9,7 +9,9 @@ export const Otp = () => {
     const ref6 = useRef();
 
     return (
-        <div className="flex justify-center">
+        <>
+            <div className='text-teal-50 text-sm text-center'> Enter the OTP</div>
+            <div className="flex justify-center pb-3 ">
             <SubBox reference={ref1} onDone={() => {ref2.current.focus()}}/>
             <SubBox reference={ref2} onDone={() => {ref3.current.focus()}}/>
             <SubBox reference={ref3} onDone={() => {ref4.current.focus()}}/>
@@ -17,7 +19,7 @@ export const Otp = () => {
             <SubBox reference={ref5} onDone={() => {ref6.current.focus()}}/>
             <SubBox reference={ref6} onDone={() => {ref6.current.focus()}}/>
         </div>
-        
+        </>
     )
 
     function SubBox({reference, onDone}) {
