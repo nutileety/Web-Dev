@@ -20,8 +20,8 @@ function App() {
 function SideBar({sidebarOpen, setSidebarOpen}) {
   if(sidebarOpen) {
     return (
-      <div className='transistion-all duration-1000 sm:w-56 bg-amber-200 w-0 h-screen'>
-        <div className='top-0 left-0 cursor-pointer' onClick= { () => {
+      <div className='transistion-all duration-1000 sm:w-56 sm:relative  bg-amber-200 absolute w-28 h-screen'>
+        <div className='top-0 left-0 cursor-pointer transition-all duration-1000' onClick= { () => {
           setSidebarOpen(!sidebarOpen)
         }}>
           <SidebarToggle />
@@ -34,7 +34,7 @@ function SideBar({sidebarOpen, setSidebarOpen}) {
       <div className='transtion-all duration-1000' onClick={ () => {
           setSidebarOpen(!sidebarOpen)
         }}>
-        <div className='fixed left-0 top-0 cursor-pointer text-white' >
+        <div className='fixed left-0 top-0 cursor-pointer sm:text-white' >
           <SidebarToggle />
         </div>
       </div>
