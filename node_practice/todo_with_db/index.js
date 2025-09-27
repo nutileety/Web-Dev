@@ -9,7 +9,7 @@ const { required } = require('zod/v4-mini');
 
 
 const app = express();
-mongoose.connect("mongodb://localhost:27017/todo_db");
+mongoose.connect("mongodb://abcd:0000/todo_db");
 
 app.use(express.json())
 
