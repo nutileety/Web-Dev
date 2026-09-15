@@ -1,6 +1,0 @@
-{
-  "version": 3,
-  "sources": [],
-  "sections": [
-    {"offset": {"line": 64, "column": 0}, "map": {"version":3,"sources":["file:///D:/programming%20practice/web_dev/100xdev/Assignment/NextJS/next-ex/app/api/user/details/route.ts"],"sourcesContent":["import { NextRequest, NextResponse } from \"next/server\"\r\n\r\nexport function GET() {\r\n    return Response.json({\r\n        \"username\": \"john@gmail.com\",\r\n        \"age\": 23,\r\n        \"city\": \"Banglore\"\r\n    })\r\n}\r\n\r\nexport async function POST(req: NextRequest) {\r\n    const user = await req.json()\r\n\r\n    console.log(user)\r\n    return NextResponse.json({\r\n        user\r\n    })\r\n}"],"names":["GET","Response","json","POST","req","user","console","log"],"mappings":";;;;;;AAAA;;AAEO,SAASA;IACZ,OAAOC,SAASC,IAAI,CAAC;QACjB,YAAY;QACZ,OAAO;QACP,QAAQ;IACZ;AACJ;AAEO,eAAeC,KAAKC,GAAgB;IACvC,MAAMC,OAAO,MAAMD,IAAIF,IAAI;IAE3BI,QAAQC,GAAG,CAACF;IACZ,OAAO,gJAAY,CAACH,IAAI,CAAC;QACrBG;IACJ;AACJ"}}]
-}

@@ -1,6 +1,0 @@
-{
-  "version": 3,
-  "sources": [],
-  "sections": [
-    {"offset": {"line": 52, "column": 0}, "map": {"version":3,"sources":["file:///D:/programming%20practice/web_dev/100xdev/Assignment/NextJS/next-ex/app/api/user/details/route.ts"],"sourcesContent":["export function GET() {\r\n    return Response.json({\r\n        \"username\": \"john@gmail.com\",\r\n        \"age\": 23,\r\n        \"city\": \"Banglore\"\r\n    })\r\n}"],"names":["GET","Response","json"],"mappings":";;;;AAAO,SAASA;IACZ,OAAOC,SAASC,IAAI,CAAC;QACjB,YAAY;QACZ,OAAO;QACP,QAAQ;IACZ;AACJ"}}]
-}

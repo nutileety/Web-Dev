@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": [],
-  "sections": [
-    {"offset": {"line": 13, "column": 0}, "map": {"version":3,"sources":["file:///D:/programming%20practice/web_dev/100xdev/Assignment/NextJS/next-ex/app/favicon.ico.mjs%20(structured%20image%20object)"],"sourcesContent":["import src from \"IMAGE\";\nexport default { src, width: 256, height: 256 }\n"],"names":["src","width","height"],"mappings":";;;;AAAA;;uCACe;IAAEA,KAAAA,mIAAG;IAAEC,OAAO;IAAKC,QAAQ;AAAI"}},
-    {"offset": {"line": 28, "column": 0}, "map": {"version":3,"sources":["file:///D:/programming%20practice/web_dev/100xdev/Assignment/NextJS/next-ex/app/page.tsx"],"sourcesContent":["import Image from \"next/image\";\nimport Link from \"next/link\";\n\nexport default function Home() {\n  return (\n    <div className=\"flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black\">\n      <h1>The website of signing user</h1>\n      <div>\n        <Link href={'/signup'}>click to signup here</Link>\n        <Link href={'/signin'}>click to signin here</Link>\n      </div>\n    </div>\n  );\n}\n"],"names":["Home","className","href"],"mappings":";;;;;AACA;;;AAEe,SAASA;IACtB,qBACE,8OAAC;QAAIC,WAAU;;0BACb,8OAAC;0BAAG;;;;;;0BACJ,8OAAC;;kCACC,8OAAC,0LAAI;wBAACC,MAAM;kCAAW;;;;;;kCACvB,8OAAC,0LAAI;wBAACA,MAAM;kCAAW;;;;;;;;;;;;;;;;;;AAI/B"}}]
-}
