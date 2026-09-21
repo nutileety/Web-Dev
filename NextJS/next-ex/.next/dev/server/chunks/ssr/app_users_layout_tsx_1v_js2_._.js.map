@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 4, "column": 0}, "map": {"version":3,"sources":["file:///D:/programming%20practice/web_dev/100xdev/Assignment/NextJS/next-ex/app/users/layout.tsx"],"sourcesContent":["import { ReactElement } from \"react\";\r\n\r\nexport default function userLayout({children}: any) {\r\n    return (<div>\r\n        <div className=\"border-b-2\">Hi there</div>\r\n        <div>{children}</div>\r\n    </div>)\r\n}"],"names":["userLayout","children","className"],"mappings":";;;;;;AAEe,SAASA,WAAW,EAACC,QAAQ,EAAM;IAC9C,qBAAQ,8OAAC;;0BACL,8OAAC;gBAAIC,WAAU;0BAAa;;;;;;0BAC5B,8OAAC;0BAAKD;;;;;;;;;;;;AAEd"}}]
+}

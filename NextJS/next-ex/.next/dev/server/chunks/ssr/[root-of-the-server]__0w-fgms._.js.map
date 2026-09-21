@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 13, "column": 0}, "map": {"version":3,"sources":["file:///D:/programming%20practice/web_dev/100xdev/Assignment/NextJS/next-ex/app/favicon.ico.mjs%20(structured%20image%20object)"],"sourcesContent":["import src from \"IMAGE\";\nexport default { src, width: 256, height: 256 }\n"],"names":["src","width","height"],"mappings":";;;;AAAA;;uCACe;IAAEA,KAAAA,mIAAG;IAAEC,OAAO;IAAKC,QAAQ;AAAI"}},
+    {"offset": {"line": 28, "column": 0}, "map": {"version":3,"sources":["file:///D:/programming%20practice/web_dev/100xdev/Assignment/NextJS/next-ex/app/users/page.tsx"],"sourcesContent":["export default function user() { \r\n\r\n    function users() {\r\n        \r\n    }\r\n    return <div>\r\n        Hi User\r\n    </div>\r\n}"],"names":["user","users"],"mappings":";;;;;;AAAe,SAASA;IAEpB,SAASC,SAET;IACA,qBAAO,8OAAC;kBAAI;;;;;;AAGhB"}}]
+}
